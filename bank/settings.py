@@ -88,8 +88,8 @@ WSGI_APPLICATION = "bank.wsgi.application"
 INSTALLED_APPS.append("drf_spectacular")
 REST_FRAMEWORK.update({"DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema"})
 SPECTACULAR_SETTINGS = {
-    "TITLE": "E-commerce Backend API",
-    "DESCRIPTION": "API Schema for E-commerce Backend",
+    "TITLE": "Bank Backend API",
+    "DESCRIPTION": "API Schema for Bank Backend",
     "VERSION": "0.1.0",
     "SERVE_INCLUDE_SCHEMA": False,
     "COMPONENT_SPLIT_REQUEST": True,

@@ -1,0 +1,34 @@
+openapi: 3.0.3
+info:
+  title: Bank Backend API
+  version: 0.1.0
+  description: API Schema for Bank Backend
+paths:
+  /accounts/import:
+    post:
+      operationId: accounts_import_create
+      tags:
+      - accounts
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /transfer:
+    post:
+      operationId: transfer_create
+      tags:
+      - transfer
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+components:
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
