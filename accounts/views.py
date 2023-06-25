@@ -4,6 +4,9 @@ from rest_framework.response import Response
 from .models import Account
 from .serializers import AccountSerializer
 import csv
+import io
+from uuid import uuid4
+from decimal import Decimal
 
 
 class AccountViewSet(viewsets.ModelViewSet):
@@ -18,10 +21,23 @@ def import_accounts(request):
     io_string = io.StringIO(data_set)
     next(io_string)
     for column in csv.reader(io_string, delimiter=",", quotechar="|"):
-        _, created = Account.objects.update_or_create(
+        # print(column[0])
+        obj, created = Account.objects.update_or_create(
             id=column[0],
-            balance=column[1],
+            defaults={"name": column[1], "balance": Decimal(column[2])},
         )
+        # print(f"id={column[0]}")
+        # print(f"name={column[1]}")
+        # print(f"id={column[2]}")
+        obj.save()
+        if created:
+            obj.save()
+        else:
+            pass
+            print(obj)
+            # print(column[1])
+        accounts = Account.objects.all()
+        print(accounts)
     return Response(status=201)
 
 
