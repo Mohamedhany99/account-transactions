@@ -1,0 +1,40 @@
+{
+	"info": {
+		"_postman_id": "8a7ccf71-ec88-4e55-9572-352f8989c5cd",
+		"name": "bank",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25969146"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/home/mohamed/accounts.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/accounts/import",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"accounts",
+						"import"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
