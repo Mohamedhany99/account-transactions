@@ -32,6 +32,7 @@ urlpatterns = [
         SpectacularSwaggerView.as_view(url_name="schema"),
         name="swagger-ui",
     ),
-    path("accounts/import", views.import_accounts),
-    path("transfer", views.transfer),
+    path("accounts/import/", views.import_accounts, name="importing-accounts"),
+    path("transfer/", views.transfer, name="transfer-amount"),
+    path("accounts/", views.ListAccounts.as_view(), name="list-accounts"),
 ]

@@ -8,6 +8,7 @@ import csv
 import io
 from uuid import uuid4
 from decimal import Decimal
+from rest_framework import generics
 
 
 class AccountViewSet(viewsets.ModelViewSet):
@@ -52,3 +53,19 @@ def transfer(request):
     to_account.save()
     print(from_account.balance)
     return Response(data="Transfer completed", status=204)
+
+
+class ListAccounts(generics.ListAPIView):
+    serializer_class = AccountSerializer
+
+    def get_queryset(self):
+        queryset = Account.objects.all()
+        return queryset
+
+    def list(self, request, *args, **kwargs):
+        try:
+            return super().list(request, *args, **kwargs)
+        except:
+            return Response(
+                data="Cannot find user info", status=status.HTTP_404_NOT_FOUND
+            )
