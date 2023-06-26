@@ -74,6 +74,46 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "list accounts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/accounts/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"accounts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "account info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/accounts/69ac3227-1944-4c3d-a63c-2b4da118ec81",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"accounts",
+						"69ac3227-1944-4c3d-a63c-2b4da118ec81"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
