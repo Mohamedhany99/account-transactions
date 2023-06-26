@@ -35,4 +35,7 @@ urlpatterns = [
     path("accounts/import/", views.import_accounts, name="importing-accounts"),
     path("transfer/", views.transfer, name="transfer-amount"),
     path("accounts/", views.ListAccounts.as_view(), name="list-accounts"),
+    path(
+        "accounts/<uuid:account_id>", views.AccountInfo.as_view(), name="account-info"
+    ),
 ]

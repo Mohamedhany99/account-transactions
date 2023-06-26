@@ -69,3 +69,17 @@ class ListAccounts(generics.ListAPIView):
             return Response(
                 data="Cannot find user info", status=status.HTTP_404_NOT_FOUND
             )
+
+
+class AccountInfo(generics.GenericAPIView):
+    serializer_class = AccountSerializer
+
+    def get(self, request, account_id):
+        try:
+            account = Account.objects.get(id=account_id)
+            serializer = self.serializer_class(instance=account)
+            return Response(data=serializer.data, status=status.HTTP_200_OK)
+        except Account.DoesNotExist:
+            return Response("cannot find user info", status=status.HTTP_404_NOT_FOUND)
+        except:
+            return Response("cannot get user info", status=status.HTTP_409_CONFLICT)
