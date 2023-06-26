@@ -1,5 +1,6 @@
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
+from rest_framework import status
 from rest_framework.response import Response
 from .models import Account
 from .serializers import AccountSerializer
@@ -26,19 +27,13 @@ def import_accounts(request):
             id=column[0],
             defaults={"name": column[1], "balance": Decimal(column[2])},
         )
-        # print(f"id={column[0]}")
-        # print(f"name={column[1]}")
-        # print(f"id={column[2]}")
-        obj.save()
         if created:
             obj.save()
         else:
             pass
             print(obj)
-            # print(column[1])
         accounts = Account.objects.all()
-        print(accounts)
-    return Response(status=201)
+    return Response(data="importing completed!", status=201)
 
 
 @api_view(["POST"])
@@ -47,9 +42,13 @@ def transfer(request):
     to_account = Account.objects.get(id=request.data["to"])
     amount = Decimal(request.data["amount"])
     if from_account.balance < amount:
-        return Response({"error": "Insufficient balance"}, status=400)
+        return Response(
+            {"error": "Insufficient balance"}, status=status.HTTP_402_PAYMENT_REQUIRED
+        )
+    print(from_account.balance)
     from_account.balance -= amount
     to_account.balance += amount
     from_account.save()
     to_account.save()
-    return Response(status=204)
+    print(from_account.balance)
+    return Response(data="Transfer completed", status=204)
