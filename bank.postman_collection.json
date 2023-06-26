@@ -35,6 +35,45 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "transfer payment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "from",
+							"value": "c8414655-e599-4d3f-987b-a79b2b52417a",
+							"type": "text"
+						},
+						{
+							"key": "to",
+							"value": "69ac3227-1944-4c3d-a63c-2b4da118ec81",
+							"type": "text"
+						},
+						{
+							"key": "amount",
+							"value": "100",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/transfer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"transfer"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
